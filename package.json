@@ -1,0 +1,48 @@
+{
+  "name": "dockshift",
+  "version": "0.1.0",
+  "description": "A touch-friendly React dock that expands into a drawer.",
+  "keywords": [
+    "react",
+    "dock",
+    "drawer",
+    "bottom-sheet",
+    "navigation",
+    "gesture"
+  ],
+  "author": "Neufox",
+  "license": "MPL-2.0",
+  "type": "module",
+  "sideEffects": ["./src/styles.css"],
+  "files": ["dist", "src/styles.css", "README.md", "LICENSE"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "typecheck": "tsc -p tsconfig.demo.json --noEmit",
+    "dev": "vite --config vite.config.ts",
+    "build:demo": "vite build --config vite.config.ts"
+  },
+  "peerDependencies": {
+    "react": ">=18.2 <20",
+    "react-dom": ">=18.2 <20"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.23"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}

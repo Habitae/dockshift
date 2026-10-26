@@ -1,0 +1,185 @@
+.dockshift-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.dockshift-backdrop {
+  position: fixed;
+  z-index: 1300;
+  inset: 0;
+  appearance: none;
+  border: 0;
+  background: var(--dockshift-backdrop-color, rgba(27, 35, 29, 0.28));
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+  visibility: hidden;
+  -webkit-backdrop-filter: blur(var(--dockshift-backdrop-blur, 3px));
+  backdrop-filter: blur(var(--dockshift-backdrop-blur, 3px));
+  transition: opacity 180ms ease, visibility 0s linear 180ms;
+}
+
+.dockshift-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.dockshift-sheet {
+  position: fixed;
+  z-index: var(--dockshift-z-index, 1301);
+  right: 0;
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  left: 0;
+  display: flex;
+  width: min(calc(100% - 1rem), var(--dockshift-max-width, 24rem));
+  height: var(--dockshift-collapsed-height, 6.25rem);
+  max-height: calc(100dvh - max(0.75rem, env(safe-area-inset-bottom)) - 0.5rem);
+  margin-inline: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  border: 1px solid var(--dockshift-border, rgba(42, 54, 43, 0.1));
+  border-radius: var(--dockshift-radius, 1.75rem);
+  background: var(--dockshift-surface, #fcfbf8);
+  color: var(--dockshift-text, #273128);
+  box-shadow: var(--dockshift-shadow, 0 20px 56px rgba(32, 43, 34, 0.17), 0 2px 8px rgba(32, 43, 34, 0.06));
+  transform: scaleY(var(--dockshift-elastic-scale, 1));
+  transform-origin: center bottom;
+  transition: height 360ms cubic-bezier(0.32, 0.72, 0, 1), transform 280ms cubic-bezier(0.2, 0.9, 0.28, 1.08), background-color 220ms ease, box-shadow 220ms ease;
+  will-change: height, transform;
+}
+
+.dockshift-sheet.is-expanded {
+  height: var(--dockshift-expanded-height, min(88dvh, 52rem));
+}
+
+.dockshift-handle-zone:focus-visible {
+  outline: 2px solid var(--dockshift-focus, #527d64);
+  outline-offset: -4px;
+}
+
+.dockshift-handle-zone {
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  height: var(--dockshift-handle-height, 2.25rem);
+  flex: 0 0 var(--dockshift-handle-height, 2.25rem);
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  touch-action: none;
+  cursor: grab;
+}
+
+.dockshift-handle-zone:active {
+  cursor: grabbing;
+}
+
+.dockshift-handle {
+  display: block;
+  width: 3.25rem;
+  height: 0.36rem;
+  border-radius: 999px;
+  background: var(--dockshift-handle-color, #b4b8b0);
+}
+
+.dockshift-content {
+  display: flex;
+  min-height: 0;
+  max-height: 0;
+  flex: 0 0 0;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 360ms cubic-bezier(0.32, 0.72, 0, 1), opacity 180ms ease, visibility 0s linear 240ms;
+}
+
+.dockshift-sheet.is-expanded .dockshift-content {
+  max-height: 100%;
+  flex: 1 1 auto;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition-delay: 0s, 90ms, 0s;
+}
+
+.dockshift-dock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: var(--dockshift-dock-height, 4rem);
+  max-height: var(--dockshift-dock-height, 4rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0 0.5rem 0.75rem;
+  box-sizing: border-box;
+  touch-action: none;
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity 180ms ease, visibility 0s linear 0s;
+}
+
+.dockshift-sheet.is-expanded .dockshift-dock {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition-delay: 0s, 180ms;
+}
+
+.dockshift-sheet[data-dockshift-dragging="true"] {
+  transition: none !important;
+}
+
+.dockshift-sheet[data-dockshift-gesture="true"],
+.dockshift-sheet[data-dockshift-gesture="true"] * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.dockshift-sheet[data-dockshift-dragging="true"] .dockshift-handle-zone,
+.dockshift-sheet[data-dockshift-dragging="true"] .dockshift-content,
+.dockshift-sheet[data-dockshift-dragging="true"] .dockshift-dock,
+.dockshift-backdrop[style*="pointer-events: auto"] {
+  transition: none !important;
+}
+
+.dockshift-sheet[data-dockshift-dragging="true"] .dockshift-content {
+  max-height: none;
+  flex: 1 1 auto;
+  opacity: var(--dockshift-drag-progress, 0);
+  visibility: visible;
+}
+
+.dockshift-sheet[data-dockshift-dragging="true"] .dockshift-dock {
+  opacity: var(--dockshift-dock-opacity, 1);
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dockshift-backdrop,
+  .dockshift-sheet,
+  .dockshift-content,
+  .dockshift-dock {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
