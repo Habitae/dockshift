@@ -7,7 +7,7 @@
   min-height: 100vh;
   min-height: 100dvh;
   grid-template-areas: "copy stage panel";
-  grid-template-columns: minmax(0, 24rem) auto minmax(0, 18.5rem);
+  grid-template-columns: minmax(22.5rem, 24rem) auto minmax(0, 18.5rem);
   align-items: center;
   justify-content: center;
   column-gap: clamp(2rem, 4vw, 4.5rem);
@@ -74,8 +74,9 @@
 
 .showcase-install {
   display: inline-flex;
+  max-width: 100%;
   align-items: center;
-  gap: 1.1rem;
+  gap: 0.8rem;
   margin-top: 1.7rem;
   padding: 0.4rem 0.4rem 0.4rem 1rem;
   border: 1px solid var(--line-strong);
@@ -88,7 +89,8 @@
   font-family: ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
-.showcase-install code { font-size: 0.86rem; }
+.showcase-install code { overflow: hidden; font-size: 0.8rem; text-overflow: ellipsis; white-space: nowrap; }
+.showcase-install button { flex: none; }
 .showcase-install code span { color: var(--faint); user-select: none; }
 
 .showcase-install button,
@@ -343,11 +345,11 @@
 
 .showcase-code pre {
   margin: 0;
-  padding: 0.9rem 0.85rem;
+  padding: 0.9rem 0.55rem 0.9rem 0.75rem;
   overflow-x: auto;
   color: #d8dccf;
-  font-size: 0.66rem;
-  line-height: 1.6;
+  font-size: 0.62rem;
+  line-height: 1.7;
 }
 
 .showcase-code button {
@@ -363,7 +365,7 @@
 .showcase-code button:hover { background: rgba(255, 255, 255, 0.18); filter: none; }
 
 /* Narrower desktops: the controls move under the copy, beside the phone */
-@media (max-width: 1179px) {
+@media (max-width: 1199px) {
   .showcase {
     grid-template-areas: "copy stage" "panel stage";
     grid-template-columns: minmax(0, 26rem) auto;

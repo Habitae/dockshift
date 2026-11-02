@@ -11,7 +11,7 @@ bringing in a design system.
 ## Install
 
 ```sh
-npm install dockshift
+npm install @itsneufox/dockshift
 ```
 
 It needs `react` and `react-dom` 18.2 or newer in your project.
@@ -19,16 +19,16 @@ It needs `react` and `react-dom` 18.2 or newer in your project.
 Import the default stylesheet once in your application:
 
 ```tsx
-import { Dockshift } from 'dockshift';
-import 'dockshift/styles.css';
+import { Dockshift } from '@itsneufox/dockshift';
+import '@itsneufox/dockshift/styles.css';
 ```
 
 ## Use
 
 ```tsx
 import { useState } from 'react';
-import { Dockshift } from 'dockshift';
-import 'dockshift/styles.css';
+import { Dockshift } from '@itsneufox/dockshift';
+import '@itsneufox/dockshift/styles.css';
 
 export function Navigation() {
   const [open, setOpen] = useState(false);

@@ -1,5 +1,5 @@
 {
-  "name": "dockshift",
+  "name": "@itsneufox/dockshift",
   "version": "0.1.0",
   "description": "A touch-friendly React dock that expands into a drawer.",
   "keywords": [
@@ -20,6 +20,9 @@
   },
   "type": "module",
   "sideEffects": ["./src/styles.css"],
+  "publishConfig": {
+    "access": "public"
+  },
   "files": ["dist", "src", "README.md", "LICENSE"],
   "exports": {
     ".": {

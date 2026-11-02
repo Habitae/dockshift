@@ -11,7 +11,7 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "dockshift": ["src/index.ts"]
+      "@itsneufox/dockshift": ["src/index.ts"]
     }
   },
   "include": ["src", "demo"]

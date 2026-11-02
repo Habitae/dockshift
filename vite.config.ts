@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      dockshift: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+      '@itsneufox/dockshift': fileURLToPath(new URL('./src/index.ts', import.meta.url)),
     },
   },
   server: {

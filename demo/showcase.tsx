@@ -63,7 +63,7 @@ function DockshiftMark() {
 }
 
 function InstallCommand() {
-  const command = 'npm install dockshift';
+  const command = 'npm install @itsneufox/dockshift';
   const { copied, copy } = useCopy(command);
 
   return (
@@ -216,7 +216,7 @@ export function Showcase() {
         <footer className="showcase-links">
           <a href="https://github.com/Habitae/dockshift">GitHub</a>
           <a href="https://github.com/Habitae/dockshift#readme">Documentation</a>
-          <a href="https://www.npmjs.com/package/dockshift">npm</a>
+          <a href="https://www.npmjs.com/package/@itsneufox/dockshift">npm</a>
           <span>MPL-2.0</span>
         </footer>
       </section>

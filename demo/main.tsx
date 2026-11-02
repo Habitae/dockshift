@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Dockshift } from 'dockshift';
+import { Dockshift } from '@itsneufox/dockshift';
 import { Icon, type IconName } from './icons';
 import {
   CollectionPage, ExplorePage, HelpPage, NeighborhoodsPage, PreferencesPage, SavedPage, TodayPage, YouPage,
