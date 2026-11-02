@@ -26,6 +26,8 @@ export type DockshiftStyle = CSSProperties & {
   '--dockshift-dock-height'?: string | number;
   '--dockshift-handle-height'?: string | number;
   '--dockshift-max-width'?: string | number;
+  /** Any other theme variable, such as --dockshift-radius or --dockshift-surface. */
+  [variable: `--dockshift-${string}`]: string | number | undefined;
 };
 
 export type DockshiftProps = {
