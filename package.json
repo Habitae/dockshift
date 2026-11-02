@@ -12,6 +12,10 @@
   ],
   "author": "Neufox",
   "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Habitae/dockshift.git"
+  },
   "type": "module",
   "sideEffects": ["./src/styles.css"],
   "files": ["dist", "src/styles.css", "README.md", "LICENSE"],
@@ -24,6 +28,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
     "prepack": "npm run build",
     "typecheck": "tsc -p tsconfig.demo.json --noEmit",
     "dev": "vite --config vite.config.ts",
