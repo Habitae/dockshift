@@ -10,9 +10,14 @@ bringing in a design system.
 
 ## Install
 
+Dockshift isn't on the npm registry yet. Install it straight from GitHub; npm
+builds it during install:
+
 ```sh
-npm install dockshift react react-dom
+npm install github:Habitae/dockshift
 ```
+
+It needs `react` and `react-dom` 18.2 or newer in your project.
 
 Import the default stylesheet once in your application:
 
