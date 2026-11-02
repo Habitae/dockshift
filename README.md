@@ -122,9 +122,11 @@ npm publish        # builds first through prepack
 For a real phone on the same Wi-Fi, start Vite with
 `npm run dev -- --host 0.0.0.0` and open the Mac's LAN address on the phone.
 
-The demo is a responsive mobile app preview: it fills a phone viewport, and on
-wide screens it sits inside a phone frame beside a short introduction, running
-at a real phone width so it can be tried with a pointer. It is a static Vite
+The demo is a small city-guide app in which every dock and drawer destination
+works. On a phone it fills the screen; on wide screens it runs at a real phone
+width inside a device frame, beside an introduction and a panel for trying the
+theme, accent, corner radius, dock height and backdrop blur live, with the
+matching Dockshift code. It follows the system's light or dark mode. It is a static Vite
 site, and its relative asset paths work at a GitHub Pages
 project URL such as `https://username.github.io/repository/`. The included
 `.github/workflows/pages.yml` builds and deploys it when this folder is the root

@@ -6,6 +6,15 @@
     <meta name="theme-color" content="#faf9f5" />
     <meta name="description" content="Dockshift: a React dock that expands into a drawer." />
     <title>Dockshift — a dock that opens into a drawer</title>
+    <script>
+      // Set the theme before the first paint so a dark page never flashes light
+      try {
+        var config = JSON.parse(localStorage.getItem('dockshift-demo-config') || '{}');
+        var appearance = config.appearance || 'system';
+        var dark = appearance === 'dark' || (appearance === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      } catch (error) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
