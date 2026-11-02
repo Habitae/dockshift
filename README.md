@@ -133,5 +133,5 @@ project URL such as `https://username.github.io/repository/`. The included
 of its own GitHub repository. In that repository, set **Settings → Pages →
 Build and deployment → Source** to **GitHub Actions**.
 
-The package is currently version `0.1.1`. The project uses the repository's
+The package is currently version `0.1.2`. The project uses the repository's
 MPL-2.0 license and Radix Dialog for dialog semantics and overlay behavior.

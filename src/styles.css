@@ -68,6 +68,11 @@
   outline-offset: -4px;
 }
 
+/* Focus moved to the handle after a tap or drag, which Safari would otherwise ring */
+.dockshift-handle-zone[data-pointer-focus]:focus-visible {
+  outline: none;
+}
+
 .dockshift-handle-zone {
   z-index: 1;
   display: grid;

@@ -1,6 +1,6 @@
 {
   "name": "@itsneufox/dockshift",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A touch-friendly React dock that expands into a drawer.",
   "keywords": [
     "react",

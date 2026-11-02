@@ -196,8 +196,31 @@ export function Dockshift({
     };
   }, [open]);
 
+  // Whether the last input was a pointer, so moving focus after a tap or drag shows no focus ring
+  const pointerInputRef = useRef(false);
+
   useEffect(() => {
-    if (open || previousOpenRef.current) handleRef.current?.focus({ preventScroll: true });
+    const onPointer = () => { pointerInputRef.current = true; };
+    const onKey = () => {
+      pointerInputRef.current = false;
+      handleRef.current?.removeAttribute('data-pointer-focus');
+    };
+    document.addEventListener('pointerdown', onPointer, true);
+    document.addEventListener('keydown', onKey, true);
+    return () => {
+      document.removeEventListener('pointerdown', onPointer, true);
+      document.removeEventListener('keydown', onKey, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handle = handleRef.current;
+    if (handle && (open || previousOpenRef.current)) {
+      const byPointer = pointerInputRef.current;
+      handle.toggleAttribute('data-pointer-focus', byPointer);
+      // focusVisible is newer than FocusOptions in TypeScript's DOM types
+      handle.focus({ preventScroll: true, focusVisible: !byPointer } as FocusOptions);
+    }
     previousOpenRef.current = open;
   }, [open]);
 
