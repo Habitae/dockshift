@@ -12,13 +12,15 @@
   ],
   "author": "Neufox",
   "license": "MPL-2.0",
+  "homepage": "https://habitae.github.io/dockshift/",
+  "bugs": "https://github.com/Habitae/dockshift/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Habitae/dockshift.git"
   },
   "type": "module",
   "sideEffects": ["./src/styles.css"],
-  "files": ["dist", "src/styles.css", "README.md", "LICENSE"],
+  "files": ["dist", "src", "README.md", "LICENSE"],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

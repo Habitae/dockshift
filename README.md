@@ -10,11 +10,8 @@ bringing in a design system.
 
 ## Install
 
-Dockshift isn't on the npm registry yet. Install it straight from GitHub; npm
-builds it during install:
-
 ```sh
-npm install github:Habitae/dockshift
+npm install dockshift
 ```
 
 It needs `react` and `react-dom` 18.2 or newer in your project.
@@ -119,6 +116,7 @@ npm run dev        # interactive demo
 npm run typecheck
 npm run build      # package JavaScript and TypeScript declarations
 npm run build:demo
+npm publish        # builds first through prepack
 ```
 
 For a real phone on the same Wi-Fi, start Vite with
