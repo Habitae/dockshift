@@ -119,8 +119,9 @@ npm run build:demo
 For a real phone on the same Wi-Fi, start Vite with
 `npm run dev -- --host 0.0.0.0` and open the Mac's LAN address on the phone.
 
-The demo is a responsive mobile app preview: it fills a phone viewport and stays
-centered at a phone-like width on desktop for pointer testing. It is a static Vite
+The demo is a responsive mobile app preview: it fills a phone viewport, and on
+wide screens it sits inside a phone frame beside a short introduction, running
+at a real phone width so it can be tried with a pointer. It is a static Vite
 site, and its relative asset paths work at a GitHub Pages
 project URL such as `https://username.github.io/repository/`. The included
 `.github/workflows/pages.yml` builds and deploys it when this folder is the root

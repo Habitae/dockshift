@@ -1,6 +1,7 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Dockshift } from 'dockshift';
+import { Showcase } from './showcase';
 import '../src/styles.css';
 import './demo.css';
 
@@ -197,4 +198,28 @@ function Demo() {
   );
 }
 
-createRoot(document.getElementById('root')!).render(<Demo />);
+// Wide screens get the showcase, which loads this same page with ?embed inside its phone
+const embedded = new URLSearchParams(window.location.search).has('embed');
+const showcaseQuery = '(min-width: 900px) and (min-height: 600px)';
+
+if (embedded) document.documentElement.classList.add('is-embedded');
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const update = () => setMatches(media.matches);
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, [query]);
+
+  return matches;
+}
+
+function Root() {
+  const wide = useMediaQuery(showcaseQuery);
+  return !embedded && wide ? <Showcase /> : <Demo />;
+}
+
+createRoot(document.getElementById('root')!).render(<Root />);

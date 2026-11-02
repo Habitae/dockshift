@@ -1,0 +1,196 @@
+/* Desktop showcase: the copy beside the live demo, which runs at a real
+   phone viewport inside an iframe so the fixed dock stays inside the device */
+
+.showcase {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  grid-template-columns: minmax(0, 30rem) auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(3rem, 8vw, 8rem);
+  padding: clamp(24px, 6vh, 48px) clamp(2.5rem, 5vw, 5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 46%, rgba(65, 109, 86, 0.1), transparent 34rem),
+    var(--page);
+}
+
+.showcase-copy { padding-bottom: 1.5rem; }
+
+.showcase-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.showcase-brand-mark {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border-radius: var(--radius-small);
+  background: var(--green);
+  color: white;
+}
+
+.showcase-brand-mark svg { width: 1.25rem; height: 1.25rem; }
+
+.showcase-version {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #dcdbd2;
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.showcase-title {
+  margin: clamp(2rem, 6vh, 3.5rem) 0 0;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(3rem, 5.2vw, 4.6rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.showcase-lede {
+  max-width: 27rem;
+  margin: 1.35rem 0 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.6;
+}
+
+.showcase-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 2rem;
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  border: 1px solid #dcdbd2;
+  border-radius: var(--radius-control);
+  background: var(--app);
+}
+
+.showcase-install code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.86rem;
+}
+
+.showcase-install code span { color: #a1a59c; user-select: none; }
+
+.showcase-install button {
+  min-width: 4.4rem;
+  padding: 0.5rem 0.8rem;
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--green);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.showcase-install button:hover { background: #375e4a; }
+.showcase-install button:focus-visible,
+.showcase-links a:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.showcase-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem 2rem;
+  margin: 2.6rem 0 0;
+  padding-top: 2rem;
+  border-top: 1px solid #dfded5;
+}
+
+.showcase-features dt { font-size: 0.86rem; font-weight: 650; }
+.showcase-features dd { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+
+.showcase-links {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.showcase-links a { color: var(--ink); font-weight: 600; text-decoration: none; }
+.showcase-links a:hover { color: var(--green); }
+
+.showcase-stage {
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  margin: 0;
+}
+
+.showcase-device-box { position: relative; }
+
+.showcase-device {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px;
+  border-radius: 64px;
+  background: linear-gradient(180deg, #f7f6f1, #dedcd2);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(42, 54, 43, 0.08),
+    0 40px 80px -24px rgba(44, 52, 40, 0.32),
+    0 18px 36px -20px rgba(0, 0, 0, 0.22);
+  transform-origin: top left;
+}
+
+.showcase-screen {
+  display: block;
+  border: 0;
+  border-radius: 52px;
+  background: var(--app);
+  box-shadow: 0 0 0 1px rgba(42, 54, 43, 0.12);
+}
+
+.showcase-island {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  width: 122px;
+  height: 35px;
+  border-radius: 999px;
+  background: #0d0e0d;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.showcase-try {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.showcase-try svg { width: 0.95rem; height: 0.95rem; color: var(--green); }
+
+@media (max-height: 780px) {
+  .showcase-copy { padding-bottom: 0; }
+  .showcase-title { margin-top: 1.6rem; font-size: clamp(2.8rem, 4.6vw, 3.9rem); }
+  .showcase-lede { margin-top: 1rem; }
+  .showcase-install { margin-top: 1.5rem; }
+  .showcase-features { gap: 1rem 2rem; margin-top: 1.8rem; padding-top: 1.5rem; }
+  .showcase-links { margin-top: 1.6rem; }
+}
+
+/* Inside the showcase's phone: leave room for the island and the home
+   indicator, as a real phone's safe areas would */
+.is-embedded .demo-page { padding-top: 3.6rem; }
+.is-embedded .dockshift-sheet { bottom: 1.1rem; }
+.is-embedded ::-webkit-scrollbar { display: none; }
+.is-embedded body { scrollbar-width: none; }
