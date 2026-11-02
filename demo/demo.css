@@ -243,7 +243,7 @@ button { font: inherit; }
 
 .demo-sheet {
   --dockshift-handle-height: 2.25rem;
-  --dockshift-expanded-height: min(89dvh, 48rem);
+  --dockshift-expanded-height: min(78dvh, 44rem);
   --dockshift-max-width: 27rem;
   --dockshift-shadow: 0 20px 56px rgba(32, 43, 34, 0.17), 0 2px 8px rgba(32, 43, 34, 0.06);
 }

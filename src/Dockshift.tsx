@@ -280,6 +280,7 @@ export function Dockshift({
     sheet.style.setProperty('--dockshift-dock-opacity', (1 - progress).toFixed(3));
     if (backdropRef.current) {
       backdropRef.current.style.opacity = progress.toFixed(3);
+      backdropRef.current.style.visibility = 'visible';
       backdropRef.current.style.pointerEvents = progress > 0.02 ? 'auto' : 'none';
     }
     const now = performance.now();
@@ -328,6 +329,7 @@ export function Dockshift({
       sheet.style.removeProperty('--dockshift-dock-opacity');
       if (backdropRef.current) {
         backdropRef.current.style.removeProperty('opacity');
+        backdropRef.current.style.removeProperty('visibility');
         backdropRef.current.style.removeProperty('pointer-events');
       }
     }));
@@ -364,6 +366,7 @@ export function Dockshift({
       sheet.style.removeProperty('--dockshift-dock-opacity');
       if (backdropRef.current) {
         backdropRef.current.style.removeProperty('opacity');
+        backdropRef.current.style.removeProperty('visibility');
         backdropRef.current.style.removeProperty('pointer-events');
       }
     });
@@ -401,12 +404,13 @@ export function Dockshift({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange} modal={false}>
       <Dialog.Portal forceMount>
-        <Dialog.Overlay
-          forceMount
+        {/* A plain element: Radix renders no Dialog.Overlay for a non-modal dialog. A press
+            on it is a press outside the sheet, so Radix closes the drawer. */}
+        <div
           ref={backdropRef}
           style={backdropStyle}
           className={joinClasses('dockshift-backdrop', classNames?.backdrop, open ? 'is-visible' : undefined)}
-          aria-hidden={!open}
+          aria-hidden="true"
         />
         <Dialog.Content
           forceMount

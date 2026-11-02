@@ -193,7 +193,7 @@ export function Showcase() {
         <header className="showcase-brand">
           <span className="showcase-brand-mark"><DockshiftMark /></span>
           <span>Dockshift</span>
-          <span className="showcase-version">v0.1.0</span>
+          <span className="showcase-version">v0.1.1</span>
         </header>
 
         <h1 className="showcase-title" id="showcase-title">A dock that opens into a drawer.</h1>
