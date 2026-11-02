@@ -2,6 +2,7 @@ import { useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import { Icon, type IconName } from './icons';
 import { collections, exploreFilters, helpTopics, neighborhoods, places, type Place } from './content';
 import { accents, type Appearance, type DemoConfig } from './theme';
+import { Customizer, INSTALL_COMMAND, features, links, useCopy } from './customizer';
 
 export type Pace = 'slow' | 'balanced' | 'full';
 
@@ -22,6 +23,9 @@ export type PageProps = {
   setPrefs: (next: Partial<Preferences>) => void;
   config: DemoConfig;
   updateConfig: (next: Partial<DemoConfig>) => void;
+  dark: boolean;
+  introVisible: boolean;
+  dismissIntro: () => void;
 };
 
 type Stop = { time: string; place: string; note: string; icon: IconName };
@@ -117,12 +121,30 @@ function EmptyState({ icon, title, body, action }: { icon: IconName; title: stri
   );
 }
 
-export function TodayPage({ prefs, go }: PageProps) {
+function IntroCard({ go, dismissIntro }: PageProps) {
+  return (
+    <aside className="demo-intro-card" aria-label="About this demo">
+      <span className="demo-intro-mark"><Icon name="dock" /></span>
+      <div className="demo-intro-copy">
+        <strong>This app is a Dockshift demo</strong>
+        <p>The dock at the bottom is a React component that opens into a drawer. Drag its handle up, or tap it.</p>
+        <div className="demo-intro-actions">
+          <button className="demo-button" type="button" onClick={() => go('Dockshift')}>About Dockshift</button>
+          <button className="demo-text-button" type="button" onClick={dismissIntro}>Got it</button>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+export function TodayPage(props: PageProps) {
+  const { prefs, go, introVisible } = props;
   const stops = stopsFor(prefs);
   const temperature = prefs.celsius ? '22°' : '72°';
 
   return (
     <>
+      {introVisible && <IntroCard {...props} />}
       <section className="demo-hero" aria-labelledby="demo-title">
         <p className="demo-eyebrow">A weekend, well spent</p>
         <h1 className="demo-title" id="demo-title">Lisbon, at your own pace.</h1>
@@ -426,6 +448,40 @@ export function CollectionPage({ route, saved, toggleSaved, back }: PageProps & 
       <PageHeader eyebrow={collection.eyebrow} title={collection.title} intro={collection.intro} back={back} />
       <p className="demo-result-count">{items.length} {items.length === 1 ? 'place' : 'places'}</p>
       <PlaceList items={items} saved={saved} toggleSaved={toggleSaved} showHood={collection.eyebrow !== 'Neighborhood'} />
+    </>
+  );
+}
+
+export function AboutPage({ back, config, updateConfig, dark }: PageProps) {
+  const { copied, copy } = useCopy(INSTALL_COMMAND);
+
+  return (
+    <>
+      <PageHeader eyebrow="About this demo" title="Dockshift" intro="The dock and the drawer in this app are one React component. Everything around them is just the demo." back={back} />
+
+      <button className="demo-install" type="button" onClick={copy} aria-label={`Copy ${INSTALL_COMMAND}`}>
+        <code>{INSTALL_COMMAND}</code>
+        <span>{copied ? 'Copied' : <Icon name="copy" />}</span>
+      </button>
+
+      <dl className="demo-features">
+        {features.map(feature => (
+          <div key={feature.title}>
+            <dt>{feature.title}</dt>
+            <dd>{feature.body}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="demo-about-customizer">
+        <Customizer config={config} dark={dark} update={updateConfig} />
+      </div>
+
+      <nav className="demo-about-links" aria-label="Dockshift links">
+        <a href={links.github} target="_blank" rel="noreferrer">GitHub <Icon name="external" /></a>
+        <a href={links.docs} target="_blank" rel="noreferrer">Docs <Icon name="external" /></a>
+        <a href={links.npm} target="_blank" rel="noreferrer">npm <Icon name="external" /></a>
+      </nav>
     </>
   );
 }

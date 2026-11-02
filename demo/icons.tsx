@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 export type IconName =
   | 'brand' | 'sun' | 'cloud' | 'today' | 'explore' | 'saved' | 'profile' | 'neighborhoods' | 'settings' | 'help'
   | 'coffee' | 'walk' | 'lunch' | 'view' | 'swipe' | 'search' | 'tram' | 'museum' | 'market' | 'rain'
-  | 'chevron' | 'back' | 'close' | 'music' | 'train' | 'leaf' | 'bell' | 'route' | 'calendar' | 'pin';
+  | 'chevron' | 'back' | 'close' | 'music' | 'train' | 'leaf' | 'bell' | 'route' | 'calendar' | 'pin'
+  | 'dock' | 'copy' | 'external';
 
 const iconPaths: Record<IconName, ReactNode> = {
   brand: <><path d="M20 10.2c0 5.5-8 11-8 11s-8-5.5-8-11a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.4" /></>,
@@ -36,6 +37,9 @@ const iconPaths: Record<IconName, ReactNode> = {
   route: <><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="6" r="2.5" /><path d="M8.5 18H16a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h7.5" /></>,
   calendar: <><rect x="3.5" y="5" width="17" height="15" rx="2.5" /><path d="M3.5 10h17M8 3v4m8-4v4" /></>,
   pin: <><path d="M20 10.2c0 5.5-8 11-8 11s-8-5.5-8-11a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.4" /></>,
+  dock: <><rect x="3.5" y="12" width="17" height="8.5" rx="3.2" /><path d="M10 15h4M7 4.5h10M9 8h6" /></>,
+  copy: <><rect x="8" y="8" width="12" height="12" rx="2.5" /><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8" /></>,
+  external: <><path d="M14 4h6v6m0-6-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" /></>,
 };
 
 export function Icon({ name, className, filled }: { name: IconName; className?: string; filled?: boolean }) {

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Dockshift } from '@itsneufox/dockshift';
 import { Icon, type IconName } from './icons';
 import {
-  CollectionPage, ExplorePage, HelpPage, NeighborhoodsPage, PreferencesPage, SavedPage, TodayPage, YouPage,
+  AboutPage, CollectionPage, ExplorePage, HelpPage, NeighborhoodsPage, PreferencesPage, SavedPage, TodayPage, YouPage,
   hasCollection, type PageProps, type Preferences,
 } from './pages';
 import { initialSaved } from './content';
@@ -50,7 +50,18 @@ const drawerGroups: Array<{ title: string; links: Link[] }> = [
   { title: 'YOUR GUIDE', links: guideLinks },
   { title: 'LOCAL FAVORITES', links: favoriteLinks },
   { title: 'PLAN YOUR DAY', links: planningLinks },
+  { title: 'ABOUT THIS DEMO', links: [{ label: 'Dockshift', icon: 'dock' }] },
 ];
+
+const INTRO_KEY = 'dockshift-demo-intro-dismissed';
+
+function introDismissed() {
+  try {
+    return localStorage.getItem(INTRO_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
 
 const initialPrefs: Preferences = { pace: 'balanced', celsius: true, fewerStairs: false, vegetarian: false, reminders: true };
 
@@ -69,6 +80,7 @@ function Page({ route, ...props }: PageProps & { route: string }) {
     case 'Neighborhoods': return <NeighborhoodsPage {...props} />;
     case 'Preferences': return <PreferencesPage {...props} />;
     case 'Help & tips': return <HelpPage {...props} />;
+    case 'Dockshift': return <AboutPage {...props} />;
     default: return hasCollection(route) ? <CollectionPage route={route} {...props} /> : <TodayPage {...props} />;
   }
 }
@@ -79,9 +91,11 @@ function Demo() {
   const [saved, setSaved] = useState<string[]>(initialSaved);
   const [prefs, setPrefsState] = useState<Preferences>(initialPrefs);
   const [config, setConfig] = useState<DemoConfig>(loadConfig);
+  // The showcase beside the phone already introduces the library on wide screens
+  const [introVisible, setIntroVisible] = useState(() => !embedded && !introDismissed());
   const route = history[history.length - 1];
 
-  useApplyConfig(config);
+  const dark = useApplyConfig(config);
   useConfigMessages(useCallback((next: DemoConfig) => setConfig(next), []));
 
   useEffect(() => {
@@ -108,6 +122,15 @@ function Demo() {
     else saveConfig(merged);
   };
 
+  const dismissIntro = () => {
+    setIntroVisible(false);
+    try {
+      localStorage.setItem(INTRO_KEY, '1');
+    } catch {
+      // Without storage the card comes back on the next visit
+    }
+  };
+
   const pageProps: PageProps = {
     go,
     back,
@@ -117,6 +140,9 @@ function Demo() {
     setPrefs: next => setPrefsState(current => ({ ...current, ...next })),
     config,
     updateConfig,
+    dark,
+    introVisible,
+    dismissIntro,
   };
 
   const sizing = dockshiftSizing(config);

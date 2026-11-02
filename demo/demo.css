@@ -258,7 +258,7 @@ button { font: inherit; }
 .demo-dock-item.is-active { color: var(--green); }
 .demo-dock-item.is-active .demo-dock-icon { background: var(--green-soft); }
 .demo-dock-item:active { transform: scale(.96); }
-:where(.demo-page, .demo-sheet) :is(button, input, summary):focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+:where(.demo-page, .demo-sheet) :is(button, input, summary, a):focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 .demo-drawer { display: flex; min-height: 0; flex: 1; flex-direction: column; padding: .25rem 1.2rem 1.25rem; }
 .demo-drawer-heading { display: flex; align-items: center; gap: .8rem; padding: .65rem .1rem 1.15rem; border-bottom: 1px solid var(--line); }
@@ -400,6 +400,38 @@ button { font: inherit; }
 .demo-faq summary::-webkit-details-marker { display: none; }
 .demo-faq details[open] .demo-chevron { transform: rotate(90deg); }
 .demo-faq p { margin: 0 0 1.1rem; color: var(--muted); font-size: .82rem; line-height: 1.6; }
+
+/* The intro card on Today and the Dockshift page */
+
+.demo-intro-card { display: flex; gap: .85rem; margin-top: 1.4rem; padding: 1rem 1rem 1.05rem; border: 1px solid color-mix(in srgb, var(--accent-base) 22%, var(--line)); border-radius: 1.25rem; background: var(--green-soft); }
+.demo-intro-card + .demo-hero { padding-top: 2.2rem; }
+.demo-intro-mark { display: grid; width: 2.4rem; height: 2.4rem; flex: none; place-items: center; border-radius: var(--radius-small); background: var(--accent-fill); color: white; }
+.demo-intro-mark svg { width: 1.3rem; height: 1.3rem; }
+.demo-intro-copy strong { display: block; padding-top: .1rem; font-size: .88rem; }
+.demo-intro-copy p { margin: .35rem 0 0; color: var(--text-soft); font-size: .78rem; line-height: 1.5; }
+.demo-intro-actions { display: flex; align-items: center; gap: .4rem; margin-top: .25rem; }
+.demo-text-button { margin-top: .7rem; padding: .7rem .9rem; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--green); font-size: .8rem; font-weight: 600; cursor: pointer; }
+.demo-text-button:hover { background: color-mix(in srgb, var(--accent-base) 10%, transparent); }
+
+.demo-install { display: flex; width: 100%; min-height: 3.2rem; align-items: center; justify-content: space-between; gap: .8rem; margin-top: 1.4rem; padding: 0 .9rem 0 1rem; border: 1px solid var(--line-strong); border-radius: var(--radius-control); background: var(--raised); color: var(--ink); cursor: pointer; }
+.demo-install code { overflow: hidden; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .78rem; text-overflow: ellipsis; white-space: nowrap; }
+.demo-install span { flex: none; color: var(--green); font-size: .74rem; font-weight: 600; }
+.demo-install svg { display: block; width: 1.1rem; height: 1.1rem; }
+.demo-install:hover { border-color: var(--green); }
+
+.demo-features { display: grid; margin: 1.3rem 0 0; }
+.demo-features div { padding: .8rem 0; border-bottom: 1px solid var(--line); }
+.demo-features div:last-child { border-bottom: 0; }
+.demo-features dt { font-size: .86rem; font-weight: 600; }
+.demo-features dd { margin: .25rem 0 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
+
+.demo-about-customizer { margin-top: 1.2rem; }
+.demo-about-customizer .showcase-panel { box-shadow: none; }
+
+.demo-about-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
+.demo-about-links a { display: inline-flex; align-items: center; gap: .35rem; padding: .6rem .9rem; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); color: var(--ink); font-size: .8rem; font-weight: 600; text-decoration: none; }
+.demo-about-links a:hover { border-color: var(--green); color: var(--green); }
+.demo-about-links svg { width: .85rem; height: .85rem; color: var(--faint); }
 
 @media (min-width: 600px) {
   .demo-page {
