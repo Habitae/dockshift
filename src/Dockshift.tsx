@@ -175,6 +175,8 @@ export function Dockshift({
   if (dockHeight !== undefined) rootStyle['--dockshift-dock-height'] = cssLength(dockHeight);
   if (handleHeight !== undefined) rootStyle['--dockshift-handle-height'] = cssLength(handleHeight);
   if (maxWidth !== undefined) rootStyle['--dockshift-max-width'] = cssLength(maxWidth);
+  // The backdrop is a sibling of the sheet, so it gets the theme variables but not the other styles
+  const backdropStyle = Object.fromEntries(Object.entries(rootStyle).filter(([key]) => key.startsWith('--'))) as DockshiftStyle;
 
   useEffect(() => {
     contentRef.current?.toggleAttribute('inert', !open);
@@ -402,6 +404,7 @@ export function Dockshift({
         <Dialog.Overlay
           forceMount
           ref={backdropRef}
+          style={backdropStyle}
           className={joinClasses('dockshift-backdrop', classNames?.backdrop, open ? 'is-visible' : undefined)}
           aria-hidden={!open}
         />
